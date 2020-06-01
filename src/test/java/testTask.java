@@ -24,21 +24,17 @@ class testTask {
 	
 	@Test
 	void test() throws InterruptedException {
-		Thread.sleep(2000);
 		driver.get("https://yandex.ru/");
-		Thread.sleep(1000);
 		driver.findElement(By.xpath("//input[@id='text']")).sendKeys("Яндекс почта");
-		Thread.sleep(2000);
 		driver.findElement(By.xpath("//button [contains (., 'Найти')]")).click();
-		Thread.sleep(3000);
 		driver.findElement(By.linkText("Яндекс.Почта — бесплатная электронная почта")).click();
 		for (String windHandle : driver.getWindowHandles()) {
 			driver.switchTo().window(windHandle);
 		}
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		driver.findElement(By.xpath("//div [@class= 'FooterButtons']/a[contains (., 'Войти')]")).click();
-		Thread.sleep(2000);
 		driver.findElement(By.xpath("//input[@id='passp-field-login']")).sendKeys("!6");
+		Thread.sleep(2000);
 		driver.findElement(By.xpath("//button [contains (., 'Войти')]")).click();
 		Thread.sleep(2000);
 		assertEquals(driver.findElement(By.xpath("//div[@class='passp-form-field__error']")).getText(), "Такой логин не подойдет");
