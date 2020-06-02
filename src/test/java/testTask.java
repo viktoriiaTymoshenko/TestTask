@@ -1,7 +1,8 @@
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.concurrent.TimeUnit;
-
+import java.nio.file.Paths;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +17,7 @@ class testTask {
 	public static WebDriver driver;
 	@BeforeEach
         void testSetup() {
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\vity0116\\New folder\\Desktop\\Test_Task\\Test\\src\\test\\java\\Resources\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver",Paths.get(System.getProperty("user.dir")).toRealPath()+"\\src\\test\\java\\Resources\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
@@ -33,7 +34,7 @@ class testTask {
 		}
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		driver.findElement(By.xpath("//div [@class= 'FooterButtons']/a[contains (., 'Войти')]")).click();
-		driver.findElement(By.xpath("//input[@id='passp-field-login']")).sendKeys("!6");
+		driver.findElement(By.xpath("//input[@id='passp-field-login']")).sendKeys(RandomStringUtils.randomAlphanumeric(10));
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//button [contains (., 'Войти')]")).click();
 		Thread.sleep(2000);
