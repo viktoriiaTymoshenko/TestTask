@@ -16,7 +16,7 @@ class testTask {
 
 	public static WebDriver driver;
 	@BeforeEach
-        void testSetup() {
+        void testSetup() throws IOException {
 		System.setProperty("webdriver.chrome.driver",Paths.get(System.getProperty("user.dir")).toRealPath()+"\\src\\test\\java\\Resources\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
